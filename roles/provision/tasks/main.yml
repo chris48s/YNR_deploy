@@ -93,6 +93,9 @@
     msg: "WARNING, INSECURE nginx. You'll need to run certbot"
   when: cert.stat.exists == False
 
+- name: Install nginx mime.types
+  template: src=files/conf/mime.types dest=/etc/nginx/mime.types
+  notify: "restart nginx"
 
 - name: Install postgres_hba configuration file.
   template: src=files/conf/pg_hba.conf dest=/etc/postgresql/9.5/main/pg_hba.conf
