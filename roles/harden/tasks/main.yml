@@ -1,0 +1,29 @@
+---
+# fail2ban
+- name: install fail2ban
+  apt: pkg=fail2ban state=installed
+  tags: package
+
+- name: configure fail2ban local jails
+  action: template src=jail.local.j2 dest=/etc/fail2ban/jail.local mode=0644
+  notify: restart fail2ban
+  tags: configuration
+
+- name: start
+  service: name=fail2ban state=started enabled=yes
+  tags: service
+
+# UFW
+- name: install UFW
+  apt: pkg=ufw state=installed
+  tags: package
+
+- ufw:
+    logging: on
+
+- ufw:
+    rule: allow
+    name: "{{ item }}"
+  with_items:
+    - Nginx Full
+    - OpenSSH

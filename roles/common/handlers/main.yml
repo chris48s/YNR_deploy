@@ -1,0 +1,17 @@
+---
+- name: restart nginx
+  service: name=nginx state=restarted
+  become: true
+
+- name: reload nginx
+  service: name=nginx state=reloaded
+  become: true
+
+- name: restart web frontend
+  action: service name={{ project_name }}_gunicorn state=restarted
+  become: true
+  become_user: root
+
+- name: restart postgres
+  service: name=postgresql state=restart
+  become: true

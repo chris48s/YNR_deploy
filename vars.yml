@@ -1,0 +1,55 @@
+---
+app_name: ynr
+branch: master
+django_media_path: ynr
+django_media_root: /var/www/ynr-data/ynr/media_root
+initfiles:
+  - gunicorn
+long_term_backup_bucket: dc-ynr-long-term-backups
+project_name: ynr
+project_repo: https://github.com/DemocracyClub/yournextrepresentative.git
+project_root: /var/www/ynr-data/ynr
+download_dir: /var/www/ynr-data/downloads/
+opencv_version: 3.2.0
+python_packages:
+  - pip
+  - virtualenv
+short_term_backup_bucket: dc-ynr-short-term-backups
+system_packages:
+  - aptitude
+  - build-essential
+  - bundler
+  - cmake
+  - curl
+  - gettext
+  - git
+  - language-pack-en
+  - libavcodec-dev
+  - libavformat-dev
+  - libevent-dev
+  - libffi-dev
+  - libgtk2.0-dev
+  - libjpeg-dev
+  - libpq-dev
+  - libssl-dev
+  - libxml2-dev
+  - libxslt-dev
+  - libyaml-dev
+  - memcached
+  - nginx
+  - opencv-data
+  - postfix
+  - postgis
+  - postgresql-9.5
+  - postgresql-client-9.5
+  - postgresql-contrib-9.5
+  - python-dev
+  - python-pip
+  - python-psycopg2
+  - python-setuptools
+  - python-virtualenv
+  - redis-server
+  - s3cmd
+  - yui-compressor
+  - unzip
+  - unattended-upgrades

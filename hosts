@@ -1,0 +1,13 @@
+[remote:children]
+production
+staging
+
+[servers:children]
+production
+staging
+
+[staging]
+YNR_Prod deploy_env=staging domain=stage.candidates.democracyclub.org.uk app_branch=staging
+
+[production]
+YNR_ProdFake deploy_env=production domain=candidates.democracyclub.org.uk app_branch=master

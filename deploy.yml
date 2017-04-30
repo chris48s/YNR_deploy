@@ -1,0 +1,76 @@
+---
+- hosts: servers
+  vars_files:
+    - vars.yml
+    - @vault.yml
+  gather_facts: true
+  become: true
+  become_user: "{{ project_name }}"
+  roles:
+    - common
+  tasks:
+    - name: Pull sources from the repository.
+      git:
+        repo: "{{ project_repo }}"
+        dest: "{{ project_root }}/code/"
+        version: "{{ app_branch }}"
+        accept_hostkey: true
+      notify:
+        - restart web frontend
+      register: application_git_repo
+
+    - name: Upload configuration.
+      template:
+        src: "webapp_settings/{{ deploy_env }}.yml"
+        dest: "{{ project_root }}/code/conf/general.yml"
+      notify:
+        - restart web frontend
+      register: application_config
+
+    - name: Upgrade the virtualenv.
+      pip:
+        requirements: "{{ project_root }}/code/requirements.txt"
+        virtualenv: "{{ project_root }}/env/"
+      notify:
+        - restart web frontend
+      when: application_git_repo.changed
+
+    - name: Migrate django
+      django_manage:
+        command: migrate --noinput
+        app_path: "{{ project_root }}/code"
+        virtualenv: "{{ project_root }}/env"
+      when: (application_git_repo.changed) or (application_config.changed)
+
+    - name: Generate the files of translated strings for Javascript to use
+      django_manage:
+        command: compilejsi18n
+        app_path: "{{ project_root }}/code"
+        virtualenv: "{{ project_root }}/env"
+      when: (application_git_repo.changed) or (application_config.changed)
+
+    - name: Generate Django media.
+      django_manage:
+        command: collectstatic --noinput
+        app_path: "{{ project_root }}/code"
+        virtualenv: "{{ project_root }}/env"
+      when: (application_git_repo.changed) or (application_config.changed)
+
+    - name: Compile all translations from .po files into .mo files
+      django_manage:
+        command: compilemessages
+        app_path: "{{ project_root }}/code"
+        virtualenv: "{{ project_root }}/env"
+      notify:
+        - restart web frontend
+      when: (application_git_repo.changed) or (application_config.changed)
+
+    - name: Upload banner.
+      template:
+        src: "webapp_settings/banner/{{ deploy_env }}.html"
+        dest: "{{ project_root }}/code/mysite/templates/banner.html"
+      notify:
+        - restart web frontend
+
+
+
