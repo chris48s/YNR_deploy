@@ -71,6 +71,4 @@
         dest: "{{ project_root }}/code/mysite/templates/banner.html"
       notify:
         - restart web frontend
-
-
-
+- include: crontab.yml

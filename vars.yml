@@ -11,6 +11,7 @@ project_repo: https://github.com/DemocracyClub/yournextrepresentative.git
 project_root: /var/www/ynr-data/ynr
 download_dir: /var/www/ynr-data/downloads/
 opencv_version: 3.2.0
+cron_email: ynr@democracyclub.org.uk
 python_packages:
   - pip
   - virtualenv
