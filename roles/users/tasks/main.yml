@@ -1,0 +1,8 @@
+- name: Set up multiple authorized keys
+  authorized_key:
+    user: ubuntu
+    state: present
+    key: '{{ item }}'
+  with_file:
+    - files/public_keys/mark-longair.pub
+    - files/public_keys/sym-roe.pub
