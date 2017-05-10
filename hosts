@@ -7,7 +7,7 @@ production
 staging
 
 [staging]
-YNR_Prod deploy_env=staging domain=stage.candidates.democracyclub.org.uk app_branch=staging
+YNR_ProdFake deploy_env=staging domain=stage.candidates.democracyclub.org.uk app_branch=staging
 
 [production]
-YNR_ProdFake deploy_env=production domain=candidates.democracyclub.org.uk app_branch=master
+YNR_Prod deploy_env=production domain=candidates.democracyclub.org.uk app_branch=master
