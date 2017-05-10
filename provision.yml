@@ -7,8 +7,8 @@
     - opencv
     - elasticsearch
     - certbot
-    - { role: backup_ynr, when: "deploy_env == 'production'" }
-    - { role: restore_from_ynr_backup, when: "deploy_env == 'staging'" }
+    # - { role: backup_ynr, when: "deploy_env == 'production'" }
+    # - { role: restore_from_ynr_backup, when: "deploy_env == 'staging'" }
   vars_files:
     - vars.yml
     - vault.yml
