@@ -8,4 +8,5 @@ WorkingDirectory={{project_root}}/code/
 ExecStart={{project_root}}/env/bin/gunicorn mysite.wsgi \
     --log-file=/tmp/{{app_name}}.log \
     --log-level=debug \
+    --workers={{ ansible_processor_cores*2+1 }} \
     --bind=unix:/tmp/{{app_name}}.sock

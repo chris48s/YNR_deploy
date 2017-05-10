@@ -114,7 +114,9 @@
     dest: /etc/systemd/system/{{ project_name }}_{{ item }}.service
   with_items: "{{ initfiles }}"
   when: ansible_distribution_version == "16.04"
-  notify: "restart web frontend"
+  notify:
+    - reload systemd
+    - "restart web frontend"
 
 - name: Create DB user.
   postgresql_user:

@@ -15,3 +15,7 @@
 - name: restart postgres
   service: name=postgresql state=restart
   become: true
+
+- name: reload systemd
+  sudo: yes
+  command: systemctl daemon-reload
