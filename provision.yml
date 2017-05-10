@@ -11,7 +11,7 @@
     - { role: restore_from_ynr_backup, when: "deploy_env == 'staging'" }
   vars_files:
     - vars.yml
-    - @vault.yml
+    - vault.yml
   gather_facts: false
   become: true
   pre_tasks:
