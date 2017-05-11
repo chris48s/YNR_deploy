@@ -8,11 +8,11 @@ DATABASE_SYSTEM: 'postgresql'
 # These settings are for when you've set 'postgresql' as the
 # DATABASE_SYSTEM above, otherwise (if you're using 'sqlite')
 # they're ignored.
-YNMP_DB_USER: '{{rds_username}}'
+YNMP_DB_USER: '{{postgres_username}}'
 YNMP_DB_NAME: '{{project_name}}'
-YNMP_DB_PASS: '{{rds_password}}'
+YNMP_DB_PASS: '{{postgres_password}}'
 YNMP_DB_PORT: ''
-YNMP_DB_HOST: '{{rds_host}}'
+YNMP_DB_HOST: '{{postgres_host}}'
 
 # Which election is this installation for? (This must be the name of a
 # package in the 'elections' package, at the moment one of
