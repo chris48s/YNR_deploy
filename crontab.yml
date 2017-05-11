@@ -23,37 +23,37 @@
   - cron:
       name: "Create CSVs"
       minute: "30"
-      job: "/usr/local/bin/output-on-error /var/www/ynr/env/bin/python /var/www/ynr/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk/var/www/ynr-data/media_root/candidates"
+      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk /var/www/ynr-data/media_root/candidates"
 
   - cron:
       name: "Detect faces"
       minute: "30,04,19"
-      job: "/usr/local/bin/output-on-error /var/www/ynr/env/bin/python /var/www/ynr/code/manage.pymoderation_queue_detect_faces_in_queued_images"
+      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py moderation_queue_detect_faces_in_queued_images"
 
   - cron:
       name: "Backup images"
       minute: "45"
-      job: "/usr/local/bin/output-on-error /var/www/ynr/backup_images.sh > /dev/null"
+      job: "/usr/local/bin/output-on-error {{project_root}}/backup_images.sh > /dev/null"
 
   # - cron:
   #     name: "Image elections from EE"
   #     minute: "06"
-  #     job: "/usr/local/bin/output-on-error /var/www/ynr/env/bin/python /var/www/ynr/code/manage.py uk_create_elections_from_every_election"
+  #     job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py uk_create_elections_from_every_election"
 
   - cron:
       name: "Update Twitter usernames"
       minute: "06"
       hour: "01"
-      job: "/usr/local/bin/output-on-error /var/www/ynr/env/bin/python /var/www/ynr/code/manage.py candidates_update_twitter_usernames"
+      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_update_twitter_usernames"
 
   - cron:
       name: "Update parties from EC"
       minute: "06"
       hour: "02"
-      job: "/usr/local/bin/output-on-error /var/www/ynr/env/bin/python /var/www/ynr/code/manage.py uk_update_parties_from_ec_data"
+      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py uk_update_parties_from_ec_data"
 
   - cron:
       name: "Add Twitter images to image queue"
       minute: "06"
       hour: "03"
-      job: "/usr/local/bin/output-on-error /var/www/ynr/env/bin/python /var/www/ynr/code/manage.py candidates_add_twitter_images_to_queue"
+      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_add_twitter_images_to_queue"
