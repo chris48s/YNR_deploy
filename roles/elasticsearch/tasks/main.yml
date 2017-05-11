@@ -24,4 +24,10 @@
     name: elasticsearch
     state: started
     enabled: yes
+  when: ansible_distribution_version == "16.04"
 
+- name: elasticsearch
+  service:
+    name: elasticsearch
+    state: started
+  when: ansible_distribution_version == "14.04"

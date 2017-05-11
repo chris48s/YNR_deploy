@@ -9,6 +9,19 @@
     cache_valid_time: 43200
   with_items: "{{ system_packages }}"
 
+- name: Install postgres
+  apt:
+    pkg: "{{ item }}"
+    state: installed
+    update-cache: yes
+    cache_valid_time: 43200
+  with_items:
+    - "postgresql-{{postgresql_version}}"
+    - "postgresql-client-{{postgresql_version}}"
+    - "postgresql-contrib-{{postgresql_version}}"
+
+
+
 - name: Upgrade all packages
   apt:
     upgrade: safe
@@ -104,7 +117,7 @@
   notify: "restart nginx"
 
 - name: Install postgres_hba configuration file.
-  template: src=files/conf/pg_hba.conf dest=/etc/postgresql/9.5/main/pg_hba.conf
+  template: src=files/conf/pg_hba.conf dest=/etc/postgresql/{{postgresql_version}}/main/pg_hba.conf
   notify: "restart postgres"
 
 - name: Install upstart init scripts.
