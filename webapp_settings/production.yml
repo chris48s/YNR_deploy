@@ -66,6 +66,8 @@ DEFAULT_FROM_EMAIL: candidates@democracyclub.org.uk
 # analytics tracking ID:
 GOOGLE_ANALYTICS_ACCOUNT: 'UA-660910-28'
 
+RAVEN_DSN: '{{ RAVEN_DSN }}'
+
 # You should set this to the name of a Twitter account associated with
 # the site; this will be used in the Twitter metadata for various
 # pages. This should just be the name of that account (not a URL), and
