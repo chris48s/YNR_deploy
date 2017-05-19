@@ -64,7 +64,7 @@ DEFAULT_FROM_EMAIL: candidates@democracyclub.org.uk
 
 # You can use Google analytics by changing this to your Google
 # analytics tracking ID:
-GOOGLE_ANALYTICS_ACCOUNT: 'UA-660910-28'
+GOOGLE_ANALYTICS_ACCOUNT: 'UA-52202336-3'
 
 RAVEN_DSN: '{{ RAVEN_DSN }}'
 
