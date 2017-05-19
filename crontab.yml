@@ -23,7 +23,7 @@
   - cron:
       name: "Create CSVs"
       minute: "30"
-      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk /var/www/ynr-data/media_root/candidates"
+      job: "nice -n 19 ionice -c 3 /usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk {{project_root}}/media_root/candidates"
 
   - cron:
       name: "Detect faces"
