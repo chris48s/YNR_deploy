@@ -58,3 +58,8 @@
       minute: "06"
       hour: "03"
       job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_add_twitter_images_to_queue"
+
+  - cron:
+      name: "Build static person pages"
+      minute: "10"
+      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_cache_api_to_directory {{django_media_root}}/cached-api https://candidates.democracyclub.org.uk/media/cached-api"
