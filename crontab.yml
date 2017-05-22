@@ -62,4 +62,4 @@
   - cron:
       name: "Build static person pages"
       minute: "10"
-      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_cache_api_to_directory {{django_media_root}}/cached-api https://candidates.democracyclub.org.uk/media/cached-api"
+      job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_cache_api_to_directory {{django_media_root}}/cached-api https://candidates.democracyclub.org.uk/media/cached-api --prune"
