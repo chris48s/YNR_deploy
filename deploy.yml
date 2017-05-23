@@ -71,4 +71,14 @@
         dest: "{{ project_root }}/code/mysite/templates/banner.html"
       notify:
         - restart web frontend
+
+    - name: Install rsyslog configuration files
+      template:
+        src: files/conf/rsyslog.conf
+        dest: /etc/rsyslog.conf
+      become_user: root
+      notify:
+        - restart rsyslog
+
+
 - include: crontab.yml
