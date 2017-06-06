@@ -26,6 +26,12 @@
       job: "nice -n 19 ionice -c 3 /usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk {{project_root}}/media_root/candidates"
 
   - cron:
+      name: "Create nightly CSVs for archival purposes"
+      minute: "30"
+      hour: "00"
+      job: "nice -n 19 ionice -c 3 /usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk --election parl.2017-06-08 {{project_root}}/media_root/csv-archives/candidates-`date +\\%Y\\%m\\%d`"
+
+  - cron:
       name: "Detect faces"
       minute: "30,04,19"
       job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py moderation_queue_detect_faces_in_queued_images"
