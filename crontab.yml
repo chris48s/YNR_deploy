@@ -25,6 +25,7 @@
       minute: "30"
       job: "nice -n 19 ionice -c 3 /usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_create_csv --site-base-url https://candidates.democracyclub.org.uk {{project_root}}/media_root/candidates"
 
+
   - cron:
       name: "Create nightly CSVs for archival purposes"
       minute: "30"
@@ -36,11 +37,13 @@
       minute: "30,04,19"
       job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py moderation_queue_detect_faces_in_queued_images"
       disabled: yes
+    when: deploy_env == "production"
 
   - cron:
       name: "Backup images"
       minute: "45"
       job: "/usr/local/bin/output-on-error {{project_root}}/backup_images.sh > /dev/null"
+    when: deploy_env == "production"
 
   # - cron:
   #     name: "Image elections from EE"
@@ -52,6 +55,7 @@
       minute: "06"
       hour: "01"
       job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_update_twitter_usernames"
+    when: deploy_env == "production"
 
   - cron:
       name: "Update parties from EC"
@@ -64,8 +68,10 @@
       minute: "06"
       hour: "03"
       job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_add_twitter_images_to_queue"
+    when: deploy_env == "production"
 
   - cron:
       name: "Build static person pages"
       minute: "10"
       job: "/usr/local/bin/output-on-error {{project_root}}/env/bin/python {{project_root}}/code/manage.py candidates_cache_api_to_directory {{django_media_root}}/cached-api https://candidates.democracyclub.org.uk/media/cached-api --prune"
+    when: deploy_env == "production"
