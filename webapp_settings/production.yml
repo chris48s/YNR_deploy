@@ -86,7 +86,7 @@ NGINX_SSL: true
 
 # If this is true, you have to be in the 'Trusted to Rename' group in
 # order to change the name of a candidate:
-RESTRICT_RENAMES: false
+RESTRICT_RENAMES: true
 
 # If this is set to false, then no new accounts may be created - you
 # might want this past a certain point in the election to reduce
