@@ -21,8 +21,8 @@
 
     - name: Upload configuration.
       template:
-        src: "webapp_settings/{{ deploy_env }}.yml"
-        dest: "{{ project_root }}/code/conf/general.yml"
+        src: "webapp_settings/{{ deploy_env }}.py"
+        dest: "{{ project_root }}/code/mysite/settings/local.py"
       notify:
         - restart web frontend
       register: application_config
